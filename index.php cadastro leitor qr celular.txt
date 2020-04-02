@@ -1,0 +1,18 @@
+<?php if(isset($_GET['submitForm'])) {
+    $handle = fopen("/storage/emulated/0/download/codes.txt", "a");
+    $len = count( file( '/storage/emulated/0/download/codes.txt' ) );
+    $code = $_GET['code'];
+    $name = $_GET['name'];
+    fwrite($handle, $code);
+    fwrite($handle, "   ");
+    fwrite($handle, $name);
+    fwrite($handle, "\r\n");
+    fclose($handle);
+} ?>
+
+<form action="" method="get">
+ <input type="hidden" name="code" value="<?php echo $_GET['code']; ?>" />
+ <p>Produto: <input type="text" name="name" style="font-family: Tahoma; font-size: 150px" /></p>
+ <p><input type="submit" name="submitForm" style="font-family: Tahoma; font-size: 200px" /></p>
+</form>
+<?php echo "Produtos A Exportar: $len";?>
